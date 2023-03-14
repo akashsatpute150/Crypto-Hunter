@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { makeStyles } from "@material-ui/core";
+import React from "react";
+import './App.css'
+import { BrowserRouter as Router ,Route,Routes } from "react-router-dom";
+import Homepage from "./Pages/Homepage";
+import Header from "./components/Header"
+import CoinPage from "./Pages/CoinPage";
+
+const useStyles = makeStyles(() => ({
+  App: {
+    backgroundColor: "#14161a",
+    color: "white",
+    minHeight: "100vh",
+  },
+}));
+
+function App(){
+  const classes = useStyles();
+
+  return(
+  <div className={classes.App}>
+    
+    <Router>
+    <Header/>
+  
+      <Routes>
+        <Route path='/' element={<Homepage/>} exact/>
+        <Route path='/coins/:id' element={<CoinPage/>} exact/>
+      </Routes>
+    </Router>
+  </div>);
 }
-
-export default App;
+export default App
